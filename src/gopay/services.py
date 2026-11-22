@@ -224,6 +224,19 @@ class GoPayService:
             reference=f"marchand:{marchand.id}",
         )
 
+
+    def configurer_webhook(self, marchand_id: int, url: str) -> str:
+        """Enregistre le webhook d'un marchand et génère son secret."""
+        marchand = self.lire_wallet(marchand_id)
+        if marchand.type != "marchand":
+            raise OperationInterdite(
+                "Seul un wallet marchand peut recevoir des webhooks."
+            )
+
+        secret = secrets.token_hex(32)
+        self.repo.webhooks[marchand_id] = (url, secret)
+        return secret
+
     def historique(
         self,
         wallet_id: int,

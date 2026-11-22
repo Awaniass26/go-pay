@@ -9,10 +9,11 @@ from gopay.fraude.client import ClientFraude
 from gopay.models import Wallet
 from gopay.repository import MemoireRepository
 from gopay.services import AntiFraude, GoPayService
+from gopay.webhooks import EnvoyeurWebhooks
 
 _repo = MemoireRepository()
 _antifraude = ClientFraude(os.environ.get("GOPAY_FRAUDE_ADRESSE", "localhost:50051"))
-
+_envoyeur = EnvoyeurWebhooks()
 
 def get_repository() -> MemoireRepository:
     return _repo
@@ -21,6 +22,11 @@ def get_repository() -> MemoireRepository:
 def get_antifraude() -> AntiFraude:
     return _antifraude
 
+def get_envoyeur() -> EnvoyeurWebhooks:
+    return _envoyeur
+
+
+Envoyeur = Annotated[EnvoyeurWebhooks, Depends(get_envoyeur)]
 
 def get_service(
     repo: Annotated[MemoireRepository, Depends(get_repository)],

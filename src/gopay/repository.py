@@ -10,6 +10,7 @@ class MemoireRepository:
         self.wallets: dict[int, Wallet] = {}
         self.transferts: dict[int, Transfert] = {}
         self.transactions: dict[int, Transaction] = {}
+        self.webhooks: dict[int, tuple[str, str]] = {}
         self._compteurs = {
             "wallet": 0,
             "transfert": 0,

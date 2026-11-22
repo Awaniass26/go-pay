@@ -512,6 +512,7 @@ dependencies = [
     { name = "fastapi", extra = ["standard"] },
     { name = "grpcio" },
     { name = "grpcio-tools" },
+    { name = "httpx" },
     { name = "strawberry-graphql" },
 ]
 
@@ -528,6 +529,7 @@ requires-dist = [
     { name = "fastapi", extras = ["standard"] },
     { name = "grpcio", specifier = ">=1.85.3" },
     { name = "grpcio-tools", specifier = ">=1.85.3" },
+    { name = "httpx", specifier = ">=0.28.1" },
     { name = "strawberry-graphql", specifier = ">=0.341.2" },
 ]
 

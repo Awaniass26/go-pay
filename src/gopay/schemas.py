@@ -4,7 +4,7 @@ from datetime import datetime
 from decimal import Decimal
 from typing import Annotated, Literal
 
-from pydantic import BaseModel, ConfigDict, Field, computed_field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, HttpUrl, computed_field, field_validator
 
 # ---------- Types réutilisables (définis une fois, utilisés partout) ----------
 
@@ -150,3 +150,13 @@ class PageTransactions(BaseModel):
 
     items: list[TransactionOut]
     next_cursor: int | None  # None = plus de page suivante
+
+
+class WebhookIn(BaseModel):
+    url: HttpUrl
+
+
+class WebhookOut(BaseModel):
+    marchand_id: int
+    url: str
+    secret: str

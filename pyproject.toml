@@ -8,6 +8,7 @@ dependencies = [
     "fastapi[standard]",
     "grpcio>=1.85.3",
     "grpcio-tools>=1.85.3",
+    "httpx>=0.28.1",
     "strawberry-graphql>=0.341.2",
 ]
 
