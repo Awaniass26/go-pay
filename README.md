@@ -1,10 +1,11 @@
-# Go Pay : API REST de transfert d'argent
+# Go Pay : API REST et GraphQL de transfert d'argent
 
 Projet du module **Développement moderne avec Python (API)** · Master 2 DATA-IA · ISM Dakar · TD1.
 
-Go Pay est un service fictif de mobile money comme wave : un client envoie de l'argent depuis son wallet, le
+Go Pay est un service fictif de mobile money : un client envoie de l'argent depuis son wallet, le
 bénéficiaire le retire en espèces chez un agent avec un code à 6 chiffres, et un client peut payer un
-marchand affilié. L'API est construite avec **FastAPI** et **Pydantic v2**. Les données sont
+marchand affilié. L'API REST est construite avec **FastAPI** et **Pydantic v2**. Une API **GraphQL**
+en lecture seule permet aussi de consulter les wallets et leurs transactions. Les données sont
 conservées **en mémoire** (elles disparaissent à l'arrêt du serveur).
 
 ## Règles métier
@@ -30,9 +31,11 @@ conservées **en mémoire** (elles disparaissent à l'arrêt du serveur).
 | `POST /v1/retraits` | Retirer en espèces avec un code (R6) |
 | `POST /v1/paiements` | Payer un marchand affilié (R7) |
 | `GET /v1/wallets/{id}/transactions` | Historique, page par page |
+| `/graphql` | Consulter wallets et transactions avec GraphQL |
 | `GET /health` | Vérifier que l'API répond |
 
-La documentation interactive est générée automatiquement : `/docs` (Swagger UI), `/redoc` et `/openapi.json`.
+La documentation REST est générée automatiquement : `/docs` (Swagger UI), `/redoc` et `/openapi.json`.
+L'éditeur GraphiQL est disponible sur `/graphql`.
 
 ## Lancer le projet
 
@@ -59,6 +62,7 @@ go-pay/
 ├── pyproject.toml        configuration du projet
 ├── src/gopay/
 │   ├── main.py           création de l'application
+│   ├── graphql_api.py    API GraphQL en lecture seule
 │   ├── schemas.py        schémas d'entrée et de sortie (Pydantic)
 │   ├── models.py         objets métier
 │   ├── repository.py     stockage en mémoire

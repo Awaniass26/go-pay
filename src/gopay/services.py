@@ -34,12 +34,13 @@ class GoPayService:
         nom: str,
         telephone: str,
         type_: str,
+        region: str = "Dakar",
     ) -> Wallet:
         if self.repo.wallet_par_telephone(telephone) is not None:
             raise TelephoneDejaUtilise(
                 f"Le numéro {telephone} a déjà un wallet."
             )
-        return self.repo.creer_wallet(nom, telephone, type_)
+        return self.repo.creer_wallet(nom, telephone, type_, region)
 
     def lire_wallet(self, wallet_id: int) -> Wallet:
         wallet = self.repo.wallet(wallet_id)

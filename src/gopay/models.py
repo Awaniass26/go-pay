@@ -17,6 +17,7 @@ class Wallet:
     type: str
     solde: Decimal = Decimal("0")
     cree_le: datetime = field(default_factory=maintenant)
+    region: str = "Dakar"
 
 
 @dataclass

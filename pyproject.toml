@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "fastapi[standard]",
+    "strawberry-graphql>=0.341.2",
 ]
 
 [dependency-groups]

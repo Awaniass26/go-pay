@@ -25,11 +25,13 @@ class MemoireRepository:
         nom: str,
         telephone: str,
         type_: str,
+        region: str = "Dakar",
     ) -> Wallet:
         wallet = Wallet(
             id=self._prochain_id("wallet"),
             nom=nom,
             telephone=telephone,
+            region=region,
             type=type_,
         )
         self.wallets[wallet.id] = wallet

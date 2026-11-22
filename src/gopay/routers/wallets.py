@@ -25,6 +25,7 @@ def ouvrir_wallet(
         data.nom,
         data.telephone,
         data.type,
+        data.region,
     )
     return WalletOut.model_validate(wallet)
 

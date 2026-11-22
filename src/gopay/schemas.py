@@ -34,6 +34,7 @@ class WalletIn(BaseModel):
     nom: str = Field(min_length=2, max_length=100)
     telephone: Telephone
     type: Literal["client", "marchand"] = "client"  # "client" si le champ est absent
+    region: str = Field(default="Dakar", min_length=2, max_length=50)
 
     # mode="before" : on nettoie la valeur AVANT de vérifier le motif du téléphone
     @field_validator("telephone", mode="before")
@@ -53,6 +54,7 @@ class WalletOut(BaseModel):
     type: str
     solde: Decimal
     cree_le: datetime
+    region: str
 
 
 class DepotIn(BaseModel):
