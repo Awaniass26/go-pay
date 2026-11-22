@@ -41,6 +41,12 @@ class OperationInterdite(GoPayError):
     status, code, titre = 422, "operation-interdite", "Opération interdite"
 
 
+class ServiceIndisponible(GoPayError):
+    status = 503
+    code = "service-indisponible"
+    titre = "Service indisponible"
+
+
 def probleme(
     request: Request,
     status: int,

@@ -35,9 +35,7 @@ def lire_wallet(
     wallet_id: int,
     service: Service,
 ) -> WalletOut:
-    return WalletOut.model_validate(
-        service.lire_wallet(wallet_id)
-    )
+    return WalletOut.model_validate(service.lire_wallet(wallet_id))
 
 
 @router.post("/{wallet_id}/depots", status_code=201)
@@ -46,9 +44,7 @@ def deposer(
     data: DepotIn,
     service: Service,
 ) -> TransactionOut:
-    return TransactionOut.model_validate(
-        service.deposer(wallet_id, data.montant)
-    )
+    return TransactionOut.model_validate(service.deposer(wallet_id, data.montant))
 
 
 @router.get("/{wallet_id}/transactions")
@@ -64,9 +60,6 @@ def historique(
         limit,
     )
     return PageTransactions(
-        items=[
-            TransactionOut.model_validate(transaction)
-            for transaction in items
-        ],
+        items=[TransactionOut.model_validate(transaction) for transaction in items],
         next_cursor=suivant,
     )

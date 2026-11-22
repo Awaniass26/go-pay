@@ -1,24 +1,32 @@
 """Injection des dépendances FastAPI."""
 
+import os
 from typing import Annotated
 
 from fastapi import Depends, Header
 
+from gopay.fraude.client import ClientFraude
 from gopay.models import Wallet
 from gopay.repository import MemoireRepository
-from gopay.services import GoPayService
+from gopay.services import AntiFraude, GoPayService
 
 _repo = MemoireRepository()
+_antifraude = ClientFraude(os.environ.get("GOPAY_FRAUDE_ADRESSE", "localhost:50051"))
 
 
 def get_repository() -> MemoireRepository:
     return _repo
 
 
+def get_antifraude() -> AntiFraude:
+    return _antifraude
+
+
 def get_service(
     repo: Annotated[MemoireRepository, Depends(get_repository)],
+    antifraude: Annotated[AntiFraude, Depends(get_antifraude)],
 ) -> GoPayService:
-    return GoPayService(repo)
+    return GoPayService(repo, antifraude)
 
 
 Service = Annotated[GoPayService, Depends(get_service)]

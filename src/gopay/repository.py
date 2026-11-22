@@ -104,7 +104,6 @@ class MemoireRepository:
                 key=lambda transaction: transaction.id,
                 reverse=True,
             )
-            if transaction.wallet_id == wallet_id
-            and (avant is None or transaction.id < avant)
+            if transaction.wallet_id == wallet_id and (avant is None or transaction.id < avant)
         ]
         return resultat[:limite]

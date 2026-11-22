@@ -6,6 +6,8 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "fastapi[standard]",
+    "grpcio>=1.85.3",
+    "grpcio-tools>=1.85.3",
     "strawberry-graphql>=0.341.2",
 ]
 
@@ -14,6 +16,7 @@ dev = [
     "mypy",
     "pytest",
     "ruff",
+    "types-grpcio>=1.85.0.20261122",
 ]
 
 [build-system]
@@ -25,6 +28,7 @@ packages = ["src/gopay"]
 
 [tool.ruff]
 line-length = 120
+extend-exclude = ["src/gopay/fraude/fraud_pb2*"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP"]
@@ -32,3 +36,14 @@ select = ["E", "F", "I", "B", "UP"]
 [tool.mypy]
 strict = true
 plugins = ["pydantic.mypy"]
+
+[[tool.mypy.overrides]]
+module = ["gopay.fraude.fraud_pb2", "gopay.fraude.fraud_pb2_grpc"]
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = ["gopay.fraude.serveur", "gopay.fraude.client"]
+disallow_untyped_calls = false
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
