@@ -79,6 +79,7 @@ class MemoireRepository:
         montant: Decimal,
         frais: Decimal,
         reference: str | None = None,
+        beneficiaire_tel: str | None = None,
     ) -> Transaction:
         transaction = Transaction(
             id=self._prochain_id("transaction"),
@@ -88,6 +89,7 @@ class MemoireRepository:
             frais=frais,
             solde_apres=wallet.solde,
             reference=reference,
+            beneficiaire_tel=beneficiaire_tel,
         )
         self.transactions[transaction.id] = transaction
         return transaction

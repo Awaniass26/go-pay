@@ -143,6 +143,7 @@ class TransactionOut(BaseModel):
     solde_apres: Decimal
     reference: str | None
     cree_le: datetime
+    beneficiaire_tel: str | None = None
 
 
 class PageTransactions(BaseModel):

@@ -133,6 +133,7 @@ class GoPayService:
             montant,
             frais,
             reference=f"transfert:{transfert.id}",
+            beneficiaire_tel=beneficiaire_tel,
         )
         return transfert
 

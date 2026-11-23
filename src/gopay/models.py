@@ -41,4 +41,5 @@ class Transaction:
     frais: Decimal
     solde_apres: Decimal
     reference: str | None = None
+    beneficiaire_tel: str | None = None
     cree_le: datetime = field(default_factory=maintenant)
